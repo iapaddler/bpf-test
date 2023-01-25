@@ -1,7 +1,7 @@
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 
-#define FNAME_LEN 32
+#define COMM_LEN 128
 struct sigdel_data_t {
     int pid;
     int sig;
@@ -9,10 +9,9 @@ struct sigdel_data_t {
     int code;
     unsigned long sa_handler;
     unsigned long sa_flags;
-    unsigned char comm[FNAME_LEN];
+    unsigned char comm[COMM_LEN];
 };
 
-// For Rust libbpf-rs only
 struct sigdel_data_t _edt = {0};
 
 struct {
